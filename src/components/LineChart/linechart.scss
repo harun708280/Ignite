@@ -1,0 +1,16 @@
+.dxc-elements-axes-group .dxc-val-elements text,
+.dxc-elements-axes-group .dxc-arg-elements text {
+  fill: #fff !important;
+}
+.dx-overlay-wrapper.dx-datebox-wrapper.dx-datebox-wrapper-date.dx-datebox-wrapper-calendar,
+.dx-overlay-wrapper.dx-selectbox-popup-wrapper {
+  z-index: 9998 !important;
+}
+.dx-field:not(:last-child) {
+  margin-bottom: 50px;
+}
+@media (max-width: 767px) {
+  .dx-swatch-dark .dx-popup-wrapper > .dx-overlay-content {
+    width: 370px !important;
+  }
+}

@@ -1,0 +1,70 @@
+@use "sass:meta";
+@use "sass:color";
+@use "sass:map";
+@use "./themes/generated/variables.base.scss" as variablesBase;
+@use "./themes/generated/variables.base.dark.scss" as variablesBaseDark;
+@use "./themes/generated/variables.additional.scss" as variablesAdditional;
+@use "./themes/generated/variables.additional.dark.scss" as
+  variablesAdditionalDark;
+
+@mixin theme-variables($theme-name) {
+  $theme: meta.module-variables($theme-name);
+  $base-text-color: map.get($theme, "base-text-color");
+  $base-bg: map.get($theme, "base-bg");
+  $base-sidebar: map.get($theme, "base-sidebar") or #2d2d2d;
+  $nav-bg: map.get($theme, "nav-bg");
+
+  --base-text-color: #{$base-text-color};
+  --base-bg: #{$base-bg};
+  --nav-bg: #{$nav-bg};
+  --base-sidebar: #{$base-sidebar};
+  --base-bg-darken-5: #{color.adjust($base-bg, $lightness: -5%)};
+  --base-accent: #{map.get($theme, "base-accent")};
+  --base-text-color-alpha-7: #{rgba(
+      $base-text-color,
+      color.alpha($base-text-color) * 0.7
+    )};
+}
+
+:root {
+  body {
+    @include theme-variables("variablesBase");
+    --base-bg: #ffffff;
+    --footer-border-color: rgba(224, 224, 224, 1);
+    --plus-icon-color: #242424;
+    --devextreme-logo-color: #596c7d;
+    --vue-logo-text-color: #35495e;
+    --base-sidebar: #330964;
+    --nav-bg: linear-gradient(92deg, #2775ff -1.82%, #2bfecd 103.35%);
+    --shadow-color-first: rgba(0, 0, 0, 0.06);
+    --shadow-color-second: rgba(0, 0, 0, 0.12);
+  }
+
+  .dx-swatch-additional {
+    @include theme-variables("variablesAdditional");
+    --base-bg: #ffffff;
+    --base-sidebar: #330964;
+    --nav-bg: linear-gradient(92deg, #2775ff -1.82%, #2bfecd 103.35%);
+  }
+
+  .dx-swatch-dark {
+    @include theme-variables("variablesBaseDark");
+    --base-bg: #ffffff0a;
+    --base-sidebar: #1a2129;
+    --nav-bg: rgba(255, 255, 255, 0.04);
+    --plus-icon-color: #fff;
+    --devextreme-logo-color: #fff;
+    --vue-logo-text-color: #fff;
+
+    --shadow-color-first: rgba(0, 0, 0, 0.12);
+    --shadow-color-second: rgba(0, 0, 0, 0.24);
+    --footer-border-color: rgba(97, 97, 97, 1);
+  }
+
+  .dx-swatch-additional-dark {
+    @include theme-variables("variablesAdditionalDark");
+    --base-bg: #ffffff0a;
+    --base-sidebar: #1a2129;
+    --nav-bg: rgba(255, 255, 255, 0.04);
+  }
+}

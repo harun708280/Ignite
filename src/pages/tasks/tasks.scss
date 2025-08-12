@@ -1,0 +1,33 @@
+.dx-datagrid-filter-row {
+  background-color: transparent;
+}
+.button {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.button-2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 768px) {
+  .button,
+  .button-2 {
+    align-items: flex-start;
+  }
+
+  .button-2 {
+    align-items: stretch;
+  }
+
+  .button > *,
+  .button-2 > * {
+    flex: 1 1 100%;
+  }
+}

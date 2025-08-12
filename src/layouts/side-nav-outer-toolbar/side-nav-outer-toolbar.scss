@@ -1,0 +1,21 @@
+.side-nav-outer-toolbar {
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  .header-component {
+    z-index: 1505;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    // background: rgba(255, 255, 255, 0.04) !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+  }
+  .dx-drawer-content {
+    padding: 20px !important;
+  }
+}

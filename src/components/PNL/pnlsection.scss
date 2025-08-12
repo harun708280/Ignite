@@ -1,0 +1,170 @@
+.pnl-section {
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--base-bg);
+  padding: 16px;
+  margin-top: 30px;
+
+  .chart-icons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .filter-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .search {
+    position: relative;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+    }
+    .search-box {
+      border-radius: 100px !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      background: var(--base-bg);
+      padding: 10px 20px 10px 50px !important;
+      min-width: 461px !important;
+      width: 100% !important;
+
+      &::before {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.dx-swatch-dark .dx-datagrid > .dx-datagrid-rowsview,
+.dx-swatch-dark .dx-datagrid > .dx-datagrid-total-footer {
+  background-color: transparent !important;
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+.dx-datagrid-headers {
+  background-color: #232a32 !important;
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+}
+.dx-swatch-dark .dx-datagrid-borders > .dx-datagrid-rowsview,
+.dx-swatch-dark .dx-datagrid-borders > .dx-datagrid-total-footer {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.dx-swatch-dark .dx-datagrid .dx-row-lines > td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.filter-bar {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .filter-btns-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 24px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  .nav-icon-btn,
+  .dx-button-content {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    margin-right: 8px;
+
+    &.right {
+      rotate: 180deg;
+      margin-left: 8px;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  .edit-filter-btn {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: transparent;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+.dx-swatch-light {
+  .pnl-section {
+    .search {
+      .search-box {
+        border: 1px solid #dbdbdb !important;
+      }
+    }
+    .filter-bar {
+      .nav-icon-btn,
+      .filter-btn,
+      .edit-filter-btn {
+        border: 1px solid rgb(90, 90, 90);
+        color: #232a32;
+      }
+      .edit-filter-btn img,
+      .nav-icon-btn img {
+        filter: brightness(0) invert(0);
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .filter-bar .filter-btns {
+    max-width: 500px;
+    overflow-x: scroll;
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-bar .filter-btns {
+    max-width: 300px;
+    overflow-x: scroll;
+  }
+}
+@media (max-width: 575px) {
+  .filter-bar .filter-btns {
+    max-width: 187px;
+    overflow-x: scroll;
+  }
+}
