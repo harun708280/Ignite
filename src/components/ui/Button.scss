@@ -6,24 +6,55 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.04);
+  transition: opacity 0.2s ease;
 
   &:hover {
     opacity: 0.9;
   }
 
+  /* Icon */
   .button-icon {
     width: 16px;
     height: 16px;
-    fill: white;
+    color: white;
+
+    path,
+    circle,
+    rect,
+    polygon {
+      fill: currentColor;
+      stroke: currentColor;
+    }
+
+    &.force-white {
+      filter: brightness(0) invert(1);
+    }
   }
 
+  /* Text */
   .button-text {
     font-size: 15px;
-    color: #000;
+    color: white;
     font-weight: 500;
   }
 }
+
+/* Light theme overrides */
+.dx-swatch-light {
+  .custom-button {
+    background-color: #fff;
+
+    .button-icon {
+      color: black;
+    }
+
+    .button-text {
+      color: black;
+    }
+  }
+}
+
 .dxc-legend .dxc-item text {
   fill: white !important;
 }
@@ -34,9 +65,8 @@
   }
 }
 
-
 .special-button {
-   padding: 8px;
+  padding: 8px;
   border-radius: 4px;
   border: none;
   cursor: pointer;
@@ -46,14 +76,12 @@
 
   transition: background-color 0.3s ease;
 
-
   .special-button-icon {
-     width: 16px;
+    width: 16px;
     height: 16px;
   }
-  
+
   .special-button-text {
     font-size: 15px;
   }
 }
-

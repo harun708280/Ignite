@@ -70,20 +70,18 @@ const TradeDetails = () => {
               <p className="sell-t">Company and Exchange Details</p>
 
               <div className="sell-row">
-                <div className="sell-select-wrapper ">
-                  <div className="flex">
-                    <label>Trade Type</label>
-                    <SelectBox
-                      dataSource={strategies}
-                      value={tradeType}
-                      placeholder="ignite Trading, LLC"
-                      onValueChanged={(e) => setTradeType(e.value)}
-                      className="custom-input"
-                    />
-                  </div>
+                <div className="sell-select-wrapper">
+                  <label>Trade Type</label>
+                  <SelectBox
+                    dataSource={strategies}
+                    value={tradeType}
+                    placeholder="ignite Trading, LLC"
+                    onValueChanged={(e) => setTradeType(e.value)}
+                    className="custom-input"
+                  />
                 </div>
 
-                <div className="sell-select-wrapper ">
+                <div className="sell-select-wrapper">
                   <label>Exchange</label>
                   <SelectBox
                     dataSource={traders}
@@ -195,7 +193,7 @@ const TradeDetails = () => {
           <div className="product-col-span-2 hight">
             <div className="product-button">
               <SpecialButton name="Pricing Structure" />
-              
+
               <SpecialButton
                 name="Pricing Schedule: 6,300,000 GAL"
                 bgColor="#CDCDCD"

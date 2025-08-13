@@ -4,7 +4,7 @@ import { ReactComponent as ArrowU } from "../../assets/images/icons/arrowU.svg";
 import { SelectBox, DateBox, TextBox } from "devextreme-react";
 import "./TradeIdentity.scss";
 import Button from "../ui/Button";
-import { ReactComponent as reload } from "../../assets/images/icons/realod.svg";
+import { ReactComponent as reload } from "../../assets/images/icons/realods.svg";
 
 const TradeIdentity = () => {
   const [tradeType, setTradeType] = useState("Futures");
@@ -94,7 +94,7 @@ const TradeIdentity = () => {
             transition: "height 0.4s ease",
           }}
         >
-          <form className="trade-form">
+          <div className="trade-form trade_id">
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="tradeType" className="input-label">
@@ -239,7 +239,7 @@ const TradeIdentity = () => {
                 />
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
