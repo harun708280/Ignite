@@ -12,7 +12,7 @@ import { ReactComponent as send } from "../../assets/images/icons/message-circle
 import { ReactComponent as dashboard } from "../../assets/images/icons/dashboard-square-add.svg";
 import { ReactComponent as reset } from "../../assets/images/icons/arrow-reload-horizontal.svg";
 import { ReactComponent as save } from "../../assets/images/icons/file-validation.svg";
-import { ReactComponent as linked } from "../../assets/images/icons/attachment-svgrepo-com.svg";
+import { ReactComponent as linked } from "../../assets/images/icons/file-validation.svg";
 import SpecialButton from "../../components/ui/SpecialButton";
 import TradeIdentity from "../../components/TradeIdentity/TradeIdentity";
 import TradeDetails from "../../components/TradeIdentity/TradeDetails";
