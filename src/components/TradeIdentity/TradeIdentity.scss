@@ -354,52 +354,57 @@
   height: 300px !important;
 }
 
-.dx-texteditor,
-.dx-selectbox,
-.dx-datebox {
-  width: 100% !important;
-  height: 38px !important;
-  min-width: 100% !important;
-  font-size: 14px !important;
-  border-radius: 4px !important;
+.trade-identity,
+.TradeDetails {
+  .dx-texteditor,
+  .dx-selectbox,
+  .dx-datebox {
+    width: 100% !important;
+    height: 38px !important;
+    min-width: 100% !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
 
-  box-sizing: border-box !important;
+    box-sizing: border-box !important;
 
-  background-color: rgba(255, 255, 255, 0.04) !important; 
-  border: 1px solid rgba(255, 255, 255, 0.1)!important;
+    background-color: rgba(255, 255, 255, 0.04) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.1)!important;
 
-  .dx-swatch-light & {
-    background: white !important;
-    border: 1px solid #ccc !important;
+    .dx-swatch-light & {
+      background: white !important;
+      border: 1px solid #ccc !important;
+    }
+  }
+
+  .dx-texteditor-input {
+    height: 100% !important;
+    width: 100% !important;
+    padding: 0 8px !important;
+    font-size: 14px !important;
+    color: #e5e7eb !important;
+
+    .dx-swatch-light & {
+      color: #181818 !important;
+    }
+  }
+
+  .dx-placeholder {
+    font-size: 14px !important;
+    color: #999 !important;
+  }
+
+  .dx-texteditor.dx-state-focused {
+    border-color: #2775ff !important;
+    box-shadow: 0 0 3px rgba(39, 117, 255, 0.6);
+  }
+
+  .dx-switch .dx-switch-handle::before,
+  .dx-switch-handle,
+  .dx-switch-handle::before {
+    background-color: #2775ff !important;
   }
 }
 
-.dx-texteditor-input {
-  height: 100% !important;
-  width: 100% !important;
-  padding: 0 8px !important;
-  font-size: 14px !important;
-  color: #e5e7eb !important;
-  .dx-swatch-light & {
-    color: #181818 !important;
-  }
-}
-
-.dx-placeholder {
-  font-size: 14px !important;
-  color: #999 !important;
-}
-
-.dx-texteditor.dx-state-focused {
-  border-color: #2775ff !important;
-  box-shadow: 0 0 3px rgba(39, 117, 255, 0.6);
-}
-
-.dx-switch .dx-switch-handle::before,
-.dx-switch-handle,
-.dx-switch-handle::before {
-  background-color: #2775ff !important;
-}
 
 @media (max-width: 768px) {
   .Product {

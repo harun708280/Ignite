@@ -43,7 +43,7 @@ const TradeIdentity = () => {
   }, [isCollapsed]);
 
   return (
-    <div className="trade-identity-container">
+    <div className="trade-identity-container trade-identity">
       <div className="tabs">
         {tabs.map((tab, index) => (
           <button
