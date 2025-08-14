@@ -37,7 +37,7 @@
     .form-row {
       display: flex;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
 
       label {
@@ -67,12 +67,10 @@
   padding: 10px;
   border-radius: 8px;
 
-  
-  background: rgba(26, 33, 41, 0.45); 
+  background: rgba(26, 33, 41, 0.45);
   backdrop-filter: blur(12px) saturate(120%);
   -webkit-backdrop-filter: blur(12px) saturate(120%);
 
- 
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -189,7 +187,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #CDCDCD;
+  background-color: #cdcdcd;
   width: 100%;
   text-align: center;
   display: flex;
@@ -197,16 +195,13 @@
 }
 
 .sell {
-
   padding: 10px;
   border-radius: 8px;
 
-  
-  background: rgba(26, 33, 41, 0.45); 
-  backdrop-filter: blur(12px) saturate(120%); 
+  background: rgba(26, 33, 41, 0.45);
+  backdrop-filter: blur(12px) saturate(120%);
   -webkit-backdrop-filter: blur(12px) saturate(120%);
 
-  
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -229,6 +224,21 @@
   display: flex;
   flex-direction: column;
   gap: 0px;
+}
+
+.flex {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+.flex2 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.text-w {
+  width: 83px;
 }
 
 .sell-row {
@@ -259,12 +269,10 @@
   padding: 10px;
   border-radius: 8px;
 
-
-  background: rgba(26, 33, 41, 0.45); 
-  backdrop-filter: blur(12px) saturate(120%); 
+  background: rgba(26, 33, 41, 0.45);
+  backdrop-filter: blur(12px) saturate(120%);
   -webkit-backdrop-filter: blur(12px) saturate(120%);
 
-  
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -289,7 +297,7 @@
 .product-form-row {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 
   label {
@@ -307,7 +315,7 @@
 }
 .product-form-row-2 {
   display: flex;
-  margin-top: 10px;
+  margin-top: 8px;
 
   gap: 10px;
   align-items: center;
@@ -321,7 +329,7 @@
   }
 }
 .bottom-line {
-   border-bottom:  1px solid rgba(255, 255, 255, 0.1)!important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   margin-top: 16px;
   margin-bottom: 16px;
 
@@ -361,15 +369,15 @@
   .dx-datebox {
     width: 100% !important;
     height: 38px !important;
-    min-width: 100% !important;
+
     font-size: 14px !important;
     border-radius: 4px !important;
 
     box-sizing: border-box !important;
     box-shadow: 2px 10px 40px 0 rgba(0, 0, 0, 0.06) !important;
 
-    background-color: rgba(255, 255, 255, 0.04) !important; 
-    border: 1px solid rgba(255, 255, 255, 0.1)!important;
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 
     .dx-swatch-light & {
       background: white !important;
@@ -399,7 +407,6 @@
   .dx-texteditor.dx-state-focused {
     border-color: #2775ff !important;
     box-shadow: 2px 10px 40px 0 #2775ff;
-
   }
 
   .dx-switch .dx-switch-handle::before,
@@ -409,8 +416,10 @@
   }
 }
 
-
 @media (max-width: 768px) {
+  .flex{
+    flex-direction: column;
+  }
   .Product {
     grid-template-columns: repeat(1, 1fr);
     margin-bottom: 15px;
@@ -438,7 +447,6 @@
     .sell-button {
       padding: 12px;
       font-size: 16px;
-     
     }
 
     .product-form-row,

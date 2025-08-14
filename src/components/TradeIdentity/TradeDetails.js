@@ -65,29 +65,29 @@ const TradeDetails = () => {
             <button className="sell-button">Sell</button>
           </div>
 
-          <div className="form-row col-span-2 sell">
-            <div className="sell-container">
+          <div className="col-span-2 sell">
+            <div className="">
               <p className="sell-t">Company and Exchange Details</p>
 
-              <div className="sell-row">
-                <div className="sell-select-wrapper">
-                  <label>Trade Type</label>
+              <div className="flex">
+                <div className=" flex2 sell-select-wrapper">
+                  <label className="text-w">Trade Type</label>
                   <SelectBox
                     dataSource={strategies}
                     value={tradeType}
                     placeholder="ignite Trading, LLC"
                     onValueChanged={(e) => setTradeType(e.value)}
-                    className="custom-input"
+                    className=""
                   />
                 </div>
 
-                <div className="sell-select-wrapper">
+                <div className=" flex2 sell-select-wrapper">
                   <label>Exchange</label>
                   <SelectBox
                     dataSource={traders}
                     placeholder="NYMEX"
                     onValueChanged={(e) => setCommodity(e.value)}
-                    className="custom-input"
+                    className=""
                   />
                 </div>
               </div>

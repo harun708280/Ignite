@@ -96,7 +96,7 @@ const TradeIdentity = () => {
         >
           <div className="trade-form trade_id">
             <div className="form-row">
-              <div className="form-group">
+              <div className="form-group sell-select-wrapper">
                 <label htmlFor="tradeType" className="input-label">
                   Trade Type
                 </label>
@@ -110,7 +110,7 @@ const TradeIdentity = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group sell-select-wrapper">
                 <label htmlFor="internalTradeId" className="input-label">
                   Internal Trade Id
                 </label>
@@ -122,7 +122,7 @@ const TradeIdentity = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group sell-select-wrapper">
                 <label htmlFor="externalTradeId" className="input-label">
                   External Trade Id:
                 </label>
@@ -134,7 +134,7 @@ const TradeIdentity = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group sell-select-wrapper">
                 <label htmlFor="tradeDate" className="input-label">
                   Trade Date:
                 </label>
@@ -147,7 +147,7 @@ const TradeIdentity = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group sell-select-wrapper">
                 <label htmlFor="trader" className="input-label">
                   Trader
                 </label>
@@ -161,7 +161,7 @@ const TradeIdentity = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group sell-select-wrapper">
                 <label htmlFor="operator" className="input-label">
                   Operator
                 </label>
@@ -175,7 +175,7 @@ const TradeIdentity = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group sell-select-wrapper">
                 <label htmlFor="status" className="input-label">
                   Status
                 </label>
