@@ -6,6 +6,10 @@
     margin-bottom: 15px;
     border-radius: 8px;
     padding: 12px;
+    // Dark mode style
+    .dx-swatch-dark & {
+      background: #192129;
+    }
   }
 
   .tab-button {
@@ -218,6 +222,8 @@
 .sell-t {
   font-size: 15px !important;
   font-weight: 600 !important;
+  margin: 0;
+  margin-bottom: 8px;
 }
 
 .sell-container {
@@ -416,8 +422,14 @@
   }
 }
 
+.dx-switch.dx-switch-on-value {
+  .dx-switch-handle::before {
+    background-color: #fff !important;
+  }
+}
+
 @media (max-width: 768px) {
-  .flex{
+  .flex {
     flex-direction: column;
   }
   .Product {
