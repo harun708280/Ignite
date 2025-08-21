@@ -129,7 +129,6 @@ export default function SideNavigationMenu(props) {
       </div>
       <div className='user-info'>
         <h2>Hi, Zahidul Islam</h2>
-        <p>Welcome to your Ignite CTRM Management Dashboard</p>
       </div>
 
       <div className='search'>

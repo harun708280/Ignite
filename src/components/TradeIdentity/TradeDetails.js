@@ -6,12 +6,48 @@ import Switch from "devextreme-react/switch";
 import "./TradeIdentity.scss";
 import { CheckBox } from "devextreme-react/check-box";
 import SpecialButton from "../ui/SpecialButton";
+import Tabs from "devextreme-react/tabs";
+const tabsText = [
+  {
+    id: 0,
+    text: "Product Specifications",
+  },
+  {
+    id: 1,
+    text: "Notes",
+  },
+];
+const tabTwo = [
+  {
+    id: 0,
+    text: "Pricing Structure",
+  },
+  {
+    id: 1,
+    text: "Pricing Schedule: 6,300,000 GAL",
+  },
+  {
+    id: 2,
+    text: "FX Settings",
+  },
+];
 
+const tabThree = [
+  {
+    id: 0,
+    text: "Associates Accounts",
+  },
+  {
+    id: 1,
+    text: "Trade Matching",
+  },
+];
 const TradeDetails = () => {
   const [tradeType, setTradeType] = useState("Futures");
   const [commodity, setCommodity] = useState("Gasoline");
   const [units, setUnits] = useState("GAL");
   const [uomEquiv, setUomEquiv] = useState("GAL to MT");
+  const [width, setWidth] = useState("auto");
 
   const [switchValue, setSwitchValue] = useState(false); // State for the Switch component
 
@@ -99,12 +135,19 @@ const TradeDetails = () => {
         <div className='Product'>
           <div className='product-col-span-2'>
             <div className='product-button'>
-              <SpecialButton name='Specifications' />
+              <Tabs
+                id='withText'
+                defaultSelectedIndex={0}
+                dataSource={tabsText}
+                width={width}
+              />
+
+              {/* <SpecialButton name='Specifications' />
               <SpecialButton
                 name='Notes'
                 bgColor='#CDCDCD'
                 textColor='#181818'
-              />
+              /> */}
             </div>
             <div>
               <div className='product-form-row'>
@@ -151,12 +194,18 @@ const TradeDetails = () => {
             </div>
             <div className='bottom-line'></div>
             <div className='product-button'>
-              <SpecialButton name='Associates Accounts' />
+              <Tabs
+                id='withText'
+                defaultSelectedIndex={0}
+                dataSource={tabThree}
+                width={width}
+              />
+              {/* <SpecialButton name='Associates Accounts' />
               <SpecialButton
                 name='Trade Matching'
                 bgColor='#CDCDCD'
                 textColor='#181818'
-              />
+              /> */}
             </div>
 
             <div>
@@ -194,7 +243,13 @@ const TradeDetails = () => {
 
           <div className='product-col-span-2 hight'>
             <div className='product-button'>
-              <SpecialButton name='Pricing Structure' />
+              <Tabs
+                id='withText'
+                defaultSelectedIndex={0}
+                dataSource={tabTwo}
+                width={width}
+              />
+              {/* <SpecialButton name='Pricing Structure' />
 
               <SpecialButton
                 name='Pricing Schedule: 6,300,000 GAL'
@@ -205,7 +260,7 @@ const TradeDetails = () => {
                 name='FX Settings'
                 bgColor='#CDCDCD'
                 textColor='#181818'
-              />
+              /> */}
             </div>
 
             <div className='product-form-row'>

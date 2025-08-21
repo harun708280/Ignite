@@ -7,10 +7,18 @@
   align-items: center;
   gap: 6px;
   background-color: rgba(255, 255, 255, 0.04);
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
 
   &:hover {
-    opacity: 0.9;
+    background-color: #2775ff !important;
+    svg {
+      path {
+        stroke: #fff;
+      }
+    }
+    .button-text {
+      color: #fff !important;
+    }
   }
 
   /* Icon */
@@ -75,6 +83,32 @@
   gap: 8px;
 
   transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #fff !important;
+    svg {
+      path {
+        stroke: #000;
+      }
+    }
+    .special-button-text {
+      color: #000 !important;
+    }
+  }
+  .dx-swatch-dark & {
+    background-color: #232a32 !important;
+
+    .special-button-text {
+      color: #fff !important;
+    }
+    &:hover {
+      background-color: #2775ff !important;
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+    }
+  }
 
   .special-button-icon {
     width: 16px;

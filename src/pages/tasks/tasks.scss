@@ -28,8 +28,15 @@
 
   .button > *,
   .button-2 > * {
-    flex: 1 1 100%;
+    // flex: 1 1 100%;
   }
+}
+
+.dx-drawer-shader {
+  left: 0;
+}
+.dx-swatch-dark .dx-drawer-shader {
+  left: 0 !important;
 }
 
 .dx-swatch-dark .custom-button svg path {

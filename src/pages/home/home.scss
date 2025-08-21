@@ -12,7 +12,16 @@
     display: inline-block;
   }
 }
+.user-info {
+  margin-bottom: 10px;
+}
 
+.dx-drawer-shader {
+  left: 0;
+}
+.dx-swatch-dark .dx-drawer-shader {
+  left: 0 !important;
+}
 
 .dx-drawer-content {
   background: #f5f9ff;
