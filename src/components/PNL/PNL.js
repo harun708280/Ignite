@@ -13,7 +13,7 @@ const data = [
   {
     strategy: "Trigger Performance",
     quantity: -55800.5,
-    cashflow: -4564212.9,
+    cashflow: 4564212.9,
     pnl: -115809.6,
   },
   {

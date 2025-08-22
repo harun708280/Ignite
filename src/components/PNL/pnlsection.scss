@@ -168,3 +168,25 @@
     overflow-x: scroll;
   }
 }
+
+.text-red {
+  color: #f3051d;
+  font-weight: 500;
+  .dx-swatch-dark & {
+    color: #ff3046;
+  }
+}
+.pnl-table {
+  .dx-row {
+    td {
+      font-weight: 500;
+    }
+  }
+}
+.text-green {
+  color: #11c99e;
+  font-weight: 500;
+  .dx-swatch-dark & {
+    color: #2bfecd;
+  }
+}

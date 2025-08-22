@@ -15,14 +15,16 @@
         display: none;
       }
     }
-    .dx-tab-selected {
-      background: #6b09dd !important;
-    }
+
     .dx-tab {
       color: #fff !important;
       border: 1px solid #923cf6;
       font-size: 15px;
       background-color: transparent;
+      &.dx-tab-selected {
+        background: #6b09dd;
+        border-color: transparent;
+      }
 
       .dx-tab-text-span {
         color: #fff !important;
@@ -37,10 +39,17 @@
     .dx-swatch-dark & {
       background: #192129;
       .dx-tab {
-        border: none;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        &:hover {
+          background: var(--Primary-Colors-02, #2775ff) !important;
+          border-color: transparent;
+        }
       }
       .dx-tab-selected {
-        background: #222a31 !important;
+        border-radius: 4px;
+        background: var(--Primary-Colors-02, #2775ff) !important;
+        border-color: transparent;
       }
     }
     .dx-scrollable-wrapper {
@@ -559,16 +568,27 @@
       border: 1px solid #cdcdcd;
       background: #f5f5f5;
       height: 34px;
+
       .dx-swatch-dark & {
         background-color: transparent;
-        border-color: transparent;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        &:hover {
+          background: var(--Primary-Colors-02, #2775ff) !important;
+          border-color: transparent !important;
+          .dx-tab-content {
+            &::after {
+              display: none;
+            }
+          }
+        }
       }
       &.dx-tab-selected {
         background: #2775ff;
         color: #fff;
         .dx-swatch-dark & {
-          background: #222a31 !important;
-          border-color: #222a31 !important;
+          background: var(--Primary-Colors-02, #2775ff) !important;
+          border-color: transparent !important;
         }
         & ::after {
           display: none;
@@ -581,4 +601,16 @@
 .dx-tabs {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+}
+.form-row2 {
+  .custom-button {
+    &:hover {
+      svg {
+        path {
+          stroke: #fff;
+          fill: #fff;
+        }
+      }
+    }
+  }
 }

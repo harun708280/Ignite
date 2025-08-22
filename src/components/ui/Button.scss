@@ -6,8 +6,11 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: rgba(255, 255, 255, 0.04);
+  background: #fff;
   transition: all 0.2s ease;
+  .dx-swatch-dark & {
+    background: #1a2129;
+  }
 
   &:hover {
     background-color: #2775ff !important;
@@ -51,8 +54,6 @@
 /* Light theme overrides */
 .dx-swatch-light {
   .custom-button {
-    background-color: #fff;
-
     .button-icon {
       color: black;
     }
