@@ -17,7 +17,7 @@ import { ThemeContext, useThemeContext } from "./theme";
 
 function App() {
   const { user, loading } = useAuth();
-
+  console.log(user, loading);
   if (loading) {
     return <LoadPanel visible={true} />;
   }

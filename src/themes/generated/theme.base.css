@@ -20356,7 +20356,6 @@ input.dx-hidden {
   height: 100%;
   width: 100%;
   background-color: rgba(0,0,0,.5);
-  left: 0;
 }
 .dx-drawer-push.dx-drawer-bottom .dx-drawer-panel-content {
   top: auto;

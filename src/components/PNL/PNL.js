@@ -7,7 +7,6 @@ import searchIcon from "../../assets/images/icons/search-normal.svg";
 import rightIcon from "../../assets/images/icons/arrow-right.svg";
 
 import "./pnlsection.scss";
-import { Button } from "devextreme-react";
 
 const data = [
   {

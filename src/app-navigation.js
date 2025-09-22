@@ -485,15 +485,15 @@ export const navigation = [
             text: "Profile",
             path: "/new-profile",
           },
-          {
-            text: "Tasks",
-            path: "/new-tasks",
-          },
         ],
       },
       {
         text: "Tasks",
         path: "/tasks",
+      },
+      {
+        text: "Concentration",
+        path: "/concentration",
       },
     ],
   },

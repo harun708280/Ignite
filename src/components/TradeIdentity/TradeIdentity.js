@@ -36,14 +36,14 @@ const TradeIdentity = () => {
   const strategies = ["Futures"];
   const ticketsList = ["Select 1", "Select 2", "Select 3"];
 
-  const tabs = [
-    "Trade Details",
-    "Invoice Activity",
-    "Prepayments",
-    "Associated Costs",
-    "User-Defined",
-    "Notes and Audit History",
-  ];
+  // const tabs = [
+  //   "Trade Details",
+  //   "Invoice Activity",
+  //   "Prepayments",
+  //   "Associated Costs",
+  //   "User-Defined",
+  //   "Notes and Audit History",
+  // ];
 
   const [isCollapsed, setIsCollapsed] = useState(false);
   const contentRef = useRef(null);
