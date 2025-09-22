@@ -85,7 +85,7 @@ export default function LoginForm() {
                   }}
                 >
                   <RequiredRule message='Password is required' />
-                  <Label visible={false} />
+                  <Label text='Password' />
                 </Item>
               </Form>
 
