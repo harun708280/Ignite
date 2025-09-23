@@ -326,27 +326,27 @@ const Concentration = () => {
     [setRtlEnabled]
   );
   return (
-    <div className='concentration-section'>
-      <div className='button'>
-        <Button icon={PIcon} name='New' />
-        <Button icon={ReloadIcon} name='Reload' />
-        <Button icon={ClearIcon} name='Clear' />
-        <Button icon={DeleteIcon} name='Delete ' />
-        <Button icon={CopyIcon} name='Copy' />
-        <Button icon={attachmentIcon} name='View Attachments' />
-        <Button icon={TradeIcon} name='Trade Linkage' />
-        <Button icon={MessageIcon} name='Send to Messenger' />
-        <Button icon={OthersIcon} name='Others' />
+    <div className="concentration-section">
+      <div className="button">
+        <Button icon={PIcon} name="New" />
+        <Button icon={ReloadIcon} name="Reload" />
+        <Button icon={ClearIcon} name="Clear" />
+        <Button icon={DeleteIcon} name="Delete " />
+        <Button icon={CopyIcon} name="Copy" />
+        <Button icon={attachmentIcon} name="View Attachments" />
+        <Button icon={TradeIcon} name="Trade Linkage" />
+        <Button icon={MessageIcon} name="Send to Messenger" />
+        <Button icon={OthersIcon} name="Others" />
       </div>
-      <div className='button-2'>
-        <Button icon={ResetIcon} name='Reset' />
+      <div className="button-2">
+        <Button icon={ResetIcon} name="Reset" />
 
-        <SpecialButton icon={SaveIcon} name='Save' iconFill='#2775FF' />
+        <SpecialButton icon={SaveIcon} name="Save" iconFill="#2775FF" />
       </div>
 
-      <div className='tabs'>
+      <div className="tabs">
         <Tabs
-          id='withText'
+          id="withText"
           width={width}
           defaultSelectedIndex={0}
           rtlEnabled={rtlEnabled}
@@ -359,46 +359,44 @@ const Concentration = () => {
         />
       </div>
 
-      <div className='treelist-wrapper'>
+      <div className="treelist-wrapper">
+        <div className="treelist-toolbar-custom">
+          <h6 className="title">Risk Concentration by Node</h6>
+          <SearchPanel dataField="item" visible={true}  />
+        </div>
         <TreeList
-          id='concentration'
+          id="concentration"
           dataSource={data}
-          keyExpr='id'
-          parentIdExpr='parentId'
+          keyExpr="id"
+          parentIdExpr="parentId"
           showBorders={true}
           columnAutoWidth={true}
           defaultExpandedRowKeys={[1, 2, 3, 6, 8, 9]}
           showRowLines={true}
         >
-          <Toolbar>
-            <Item location='before'>
-              <h2 className='treelist-header'>Concentration Report</h2>
-            </Item>
-            <Item location='after' name='searchPanel' />
-          </Toolbar>
+          
+          <SearchPanel visible={true} width={260} height={78} />
 
-          <SearchPanel visible={true} width={220} />
-
-          <Column dataField='item' caption='Item Id' width={240} />
+          <Column dataField="item" caption="Item Id" width={240} />
           <Column
-            dataField='quantityUOM'
-            caption='Quantity (UOM)'
+            dataField="quantityUOM"
+            caption="Quantity (UOM)"
             format={{ type: "fixedPoint", precision: 3 }}
           />
           <Column
-            dataField='quantityMT'
-            caption='Quantity (MT)'
+            dataField="quantityMT"
+            caption="Quantity (MT)"
             format={{ type: "fixedPoint", precision: 3 }}
           />
-          <Column dataField='quantityBBL' caption='Quantity (BBL)' />
+          <Column dataField="quantityBBL" caption="Quantity (BBL)" />
           <Column
-            dataField='price'
-            caption='Underlying Price'
-            alignment='right'
+            dataField="price"
+            caption="Underlying Price"
+            alignment="right"
           />
-          <Column dataField='pnl' caption='Profit & Loss' alignment='right' />
-          <Column dataField='cashflow' caption='Cashflow' alignment='right' />
-          <Column dataField='total' caption='Total' alignment='right' />
+          <Column dataField="pnl" caption="Profit & Loss" alignment="right" />
+          <Column dataField="cashflow" caption="Cashflow" alignment="right" />
+          <Column dataField="total" caption="Total" alignment="right" />
         </TreeList>
       </div>
     </div>

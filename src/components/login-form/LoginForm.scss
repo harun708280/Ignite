@@ -19,12 +19,17 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  
 
   width: 100%;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 .login-container {
   display: flex;
+ 
+
   max-width: 1440px;
   width: 100%;
   padding: 20px;
@@ -110,111 +115,96 @@
 
 /* Form */
 .login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
   .dx-form {
     width: 100%;
+
     .dx-field-item-label-content {
       font-size: 14px;
       font-weight: 600;
-    }
-    .dx-texteditor.dx-editor-filled {
-      background: transparent;
-      border: 1px solid #e2e2ea;
-      border-radius: 10px;
-      // min-height: 48px;
-    }
-    .dx-texteditor.dx-editor-filled .dx-placeholder::before,
-    .dx-texteditor.dx-editor-filled .dx-texteditor-input {
-      padding-top: 15px;
-      padding-bottom: 15px;
-    }
-  }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
-    max-width: 450px;
-
-    label {
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 100%;
+      margin-bottom: 6px;
       color: #181818;
-      text-align: left;
+
+      .dx-swatch-dark & {
+        color: #fff;
+      }
     }
 
-    .dx-texteditor {
-      width: 450px !important;
+    .dx-texteditor.dx-editor-filled {
+      width: 100% !important;
+      max-width: 450px;
       height: 48px !important;
-      border-radius: 8px !important;
-      border: 1px solid #e2e2ea !important;
-      color: #222325 !important;
+
+      background: #fff;
+      border: 1px solid #e2e2ea;
+      border-radius: 8px;
+      transition: border 0.2s, box-shadow 0.2s;
+      overflow: hidden;
 
       .dx-texteditor-input {
         font-size: 14px;
         font-weight: 400;
+        padding: 0 14px;
         color: #222325;
-        padding: 0 12px;
-      }
-    }
-  }
 
-  /* Options row */
-  .form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 450px;
-
-    /* Checkbox */
-    .dx-checkbox {
-      .dx-checkbox-icon {
-        border-radius: 50% !important;
-        border: 1px solid #e2e2ea !important;
-        width: 18px;
-        height: 18px;
+        .dx-swatch-dark & {
+          color: #fff;
+        }
       }
 
-      .dx-checkbox-text {
-        font-weight: 400;
+      .dx-placeholder::before {
+        color: #909091;
         font-size: 14px;
-        color: #222325;
       }
-    }
 
-    /* Forgot password link */
-    .forgot-password {
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 100%;
-      color: #196feb;
-      text-decoration: none;
-    }
+     
 
-    .forgot-password:hover {
-      text-decoration: underline;
-    }
-  }
-
-  /* Submit button */
-  .form-submit {
-    width: 100%;
-    max-width: 450px;
-
-    .dx-button {
-      border-radius: 8px;
-
-      font-size: 16px;
-      font-weight: 600;
+      
     }
   }
 }
+
+.dx-swatch-dark .dx-texteditor-buttons-container {
+  display: flex;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  flex-grow: 0 !important;
+  flex-basis: auto !important;
+  background-color: white !important;
+}
+
+
+.dx-swatch-dark .dx-texteditor-input {
+  color: #000 !important;
+}
+
+.dx-swatch-dark .dx-button-mode-text .dx-icon {
+    color: black;
+}
+
+
+
+
+.login-form{
+  .dx-button.dx-button-mode-text.dx-button-has-icon {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-width: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+
+.dx-button.dx-button-mode-text.dx-button-has-icon .dx-icon {
+  font-size: 18px !important;
+  color: #000 !important; 
+}
+
+}
+
 
 /* Submit button */
 .form-submit {
@@ -370,7 +360,7 @@
 }
 
 .login-image {
-  max-height: calc(100vh - 100px);
+  max-height:100%;
   width: 100%;
 }
 
@@ -394,4 +384,19 @@
     color: #479ef5 !important;
     overflow: visible;
   }
+}
+
+
+
+.login-video {
+  flex: 1; 
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.login-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  border-radius: 10px; 
 }
