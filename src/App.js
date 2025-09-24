@@ -23,7 +23,7 @@ function App() {
   }
 
   if (user) {
-    return <Content />; return <Content />;
+    return <Content />;
   }
 
   return <UnauthenticatedContent />;
