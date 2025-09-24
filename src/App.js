@@ -18,15 +18,16 @@ import { ThemeContext, useThemeContext } from "./theme";
 function App() {
   const { user, loading } = useAuth();
   console.log(user, loading);
-  if (loading) {
-    return <LoadPanel visible={true} />;
-  }
+  // if (loading) {
+  //   return <LoadPanel visible={true} />;
+  // }
 
-  if (user) {
-    return <Content />;
-  }
+  // if (user) {
+  //   return <Content />;
+  // }
 
-  return <UnauthenticatedContent />;
+  // return <UnauthenticatedContent />;
+  return <Content />;
 }
 
 export default function Root() {
