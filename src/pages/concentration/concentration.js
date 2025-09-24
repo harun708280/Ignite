@@ -1,14 +1,8 @@
-import TreeList, {
-  Column,
-  Item,
-  SearchPanel,
-} from "devextreme-react/tree-list";
+import TreeList, { Column, SearchPanel } from "devextreme-react/tree-list";
 import { orientations, tabsText, stylingModes, iconPositions } from "./tabData";
 import Tabs from "devextreme-react/tabs";
-// import "devextreme/dist/css/dx.light.css";
 import "./Concentration.scss";
 import Button from "../../components/ui/Button";
-
 import SpecialButton from "../../components/ui/SpecialButton";
 import {
   attachmentIcon,
@@ -24,9 +18,32 @@ import {
   TradeIcon,
 } from "../../icons";
 import { useCallback, useState } from "react";
-import { Toolbar } from "devextreme-react";
+
+const renderRedIfNegative = (cellData) => {
+  const value = cellData.value;
+  if (typeof value === "number") {
+    return (
+      <span style={{ color: value < 0 ? "red" : "inherit" }}>{value}</span>
+    );
+  }
+  return <span>{value}</span>;
+};
+
+const renderRedWith3Digits = (cellData) => {
+  const value = cellData.value;
+  if (typeof value === "number") {
+    const formatted = value.toLocaleString("en-US", {
+      minimumFractionDigits: 3,
+      maximumFractionDigits: 3,
+    });
+    return (
+      <span style={{ color: value < 0 ? "red" : "inherit" }}>{formatted}</span>
+    );
+  }
+  return <span>{value}</span>;
+};
+
 const data = [
-  // Root
   {
     id: 1,
     parentId: 0,
@@ -39,8 +56,6 @@ const data = [
     cashflow: 490.51,
     total: 328.85,
   },
-
-  // Trades
   {
     id: 2,
     parentId: 1,
@@ -53,8 +68,6 @@ const data = [
     cashflow: 601.13,
     total: 446.61,
   },
-
-  // Physical
   {
     id: 3,
     parentId: 2,
@@ -67,8 +80,6 @@ const data = [
     cashflow: 406.27,
     total: 351.02,
   },
-
-  // Buy under Physical
   {
     id: 4,
     parentId: 3,
@@ -93,8 +104,6 @@ const data = [
     cashflow: 105.55,
     total: 589.99,
   },
-
-  // Sell under Physical
   {
     id: 6,
     parentId: 3,
@@ -131,8 +140,6 @@ const data = [
     cashflow: 105.55,
     total: 589.99,
   },
-
-  // Outcome Adjustment
   {
     id: 9,
     parentId: 2,
@@ -145,8 +152,6 @@ const data = [
     cashflow: 406.27,
     total: 351.02,
   },
-
-  // Loss under Outcome Adjustment
   {
     id: 10,
     parentId: 9,
@@ -171,8 +176,6 @@ const data = [
     cashflow: 105.55,
     total: 589.99,
   },
-
-  // Futures
   {
     id: 12,
     parentId: 1,
@@ -185,8 +188,6 @@ const data = [
     cashflow: 943.65,
     total: 948.55,
   },
-
-  // NYMEX under Futures
   {
     id: 13,
     parentId: 12,
@@ -199,8 +200,6 @@ const data = [
     cashflow: 105.55,
     total: 589.99,
   },
-
-  // Sell under NYMEX
   {
     id: 14,
     parentId: 13,
@@ -235,7 +234,7 @@ const tabs = [
   "User-Defined",
   "Notes and Audit History",
 ];
-const STRICT_WIDTH_CLASS = "strict-width";
+
 const Concentration = () => {
   const [width, setWidth] = useState("auto");
   const [rtlEnabled, setRtlEnabled] = useState(false);
@@ -244,87 +243,7 @@ const Concentration = () => {
   const [stylingMode, setStylingMode] = useState(stylingModes[1]);
   const [iconPosition, setIconPosition] = useState(iconPositions[0]);
   const [orientation, setOrientation] = useState(orientations[0]);
-  const [fullWidth, setFullWidth] = useState(false);
-  const [widgetWrapperClasses, setWidgetWrapperClasses] = useState(
-    "widget-wrapper widget-wrapper-horizontal"
-  );
 
-  const enforceWidthConstraint = useCallback(
-    (shouldRestrictWidth) => {
-      const callback = (prevClasses) => {
-        const restClasses = prevClasses
-          .split(" ")
-          .filter((className) => className !== STRICT_WIDTH_CLASS)
-          .join(" ");
-        const strictWidthClass = shouldRestrictWidth ? STRICT_WIDTH_CLASS : "";
-        return `${restClasses} ${strictWidthClass}`;
-      };
-      setWidgetWrapperClasses(callback);
-    },
-    [setWidgetWrapperClasses]
-  );
-  const stylingModeChanged = useCallback(
-    (e) => {
-      setStylingMode(e.value);
-    },
-    [setStylingMode]
-  );
-  const iconPositionChanged = useCallback(
-    (e) => {
-      setIconPosition(e.value);
-    },
-    [setIconPosition]
-  );
-  const orientationChanged = useCallback(
-    (e) => {
-      const isVertical = e.value === "vertical";
-      const callback = (prevClasses) => {
-        const restClasses = prevClasses
-          .split(" ")
-          .filter(
-            (className) =>
-              className !==
-              (isVertical
-                ? "widget-wrapper-horizontal"
-                : "widget-wrapper-vertical")
-          )
-          .join(" ");
-        return `${restClasses} widget-wrapper-${e.value}`;
-      };
-      setWidgetWrapperClasses(callback);
-      setOrientation(e.value);
-    },
-    [setOrientation, setWidgetWrapperClasses]
-  );
-  const showNavigationChanged = useCallback(
-    (e) => {
-      const shouldRestrictWidth = e.value || scrollContent;
-      enforceWidthConstraint(shouldRestrictWidth);
-      setShowNavigation(e.value);
-    },
-    [scrollContent, setShowNavigation, enforceWidthConstraint]
-  );
-  const scrollContentChanged = useCallback(
-    (e) => {
-      const shouldRestrictWidth = e.value || showNavigation;
-      enforceWidthConstraint(shouldRestrictWidth);
-      setScrollContent(e.value);
-    },
-    [showNavigation, setScrollContent, enforceWidthConstraint]
-  );
-  const fullWidthChanged = useCallback(
-    (e) => {
-      setFullWidth(e.value);
-      setWidth(e.value ? "100%" : "auto");
-    },
-    [setFullWidth, setWidth]
-  );
-  const rtlEnabledChanged = useCallback(
-    (e) => {
-      setRtlEnabled(e.value);
-    },
-    [setRtlEnabled]
-  );
   return (
     <div className="concentration-section">
       <div className="button">
@@ -338,9 +257,9 @@ const Concentration = () => {
         <Button icon={MessageIcon} name="Send to Messenger" />
         <Button icon={OthersIcon} name="Others" />
       </div>
+
       <div className="button-2">
         <Button icon={ResetIcon} name="Reset" />
-
         <SpecialButton icon={SaveIcon} name="Save" iconFill="#2775FF" />
       </div>
 
@@ -362,8 +281,9 @@ const Concentration = () => {
       <div className="treelist-wrapper">
         <div className="treelist-toolbar-custom">
           <h6 className="title">Risk Concentration by Node</h6>
-          <SearchPanel dataField="item" visible={true}  />
+          <SearchPanel dataField="item" visible={true} />
         </div>
+
         <TreeList
           id="concentration"
           dataSource={data}
@@ -374,29 +294,45 @@ const Concentration = () => {
           defaultExpandedRowKeys={[1, 2, 3, 6, 8, 9]}
           showRowLines={true}
         >
-          
           <SearchPanel visible={true} width={260} height={78} />
 
           <Column dataField="item" caption="Item Id" width={240} />
+
           <Column
             dataField="quantityUOM"
             caption="Quantity (UOM)"
-            format={{ type: "fixedPoint", precision: 3 }}
+            cellRender={renderRedWith3Digits}
           />
           <Column
             dataField="quantityMT"
             caption="Quantity (MT)"
-            format={{ type: "fixedPoint", precision: 3 }}
+            cellRender={renderRedWith3Digits}
           />
-          <Column dataField="quantityBBL" caption="Quantity (BBL)" />
+
+          <Column
+            dataField="quantityBBL"
+            caption="Quantity (BBL)"
+            cellRender={renderRedIfNegative}
+          />
           <Column
             dataField="price"
             caption="Underlying Price"
             alignment="right"
+            cellRender={renderRedIfNegative}
           />
           <Column dataField="pnl" caption="Profit & Loss" alignment="right" />
-          <Column dataField="cashflow" caption="Cashflow" alignment="right" />
-          <Column dataField="total" caption="Total" alignment="right" />
+          <Column
+            dataField="cashflow"
+            caption="Cashflow"
+            alignment="right"
+            cellRender={renderRedIfNegative}
+          />
+          <Column
+            dataField="total"
+            caption="Total"
+            alignment="right"
+            cellRender={renderRedIfNegative}
+          />
         </TreeList>
       </div>
     </div>

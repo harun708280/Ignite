@@ -1,4 +1,5 @@
 .concentration-section {
+  padding-bottom: 60px;
 }
 .tabs {
   background: #330964;
@@ -111,7 +112,7 @@
   height: 100%;
   background: var(--base-bg);
   border-radius: 10px;
-  padding: 20px; 
+  padding: 20px;
   box-sizing: border-box;
 }
 
@@ -141,8 +142,6 @@
   margin-bottom: 10px;
   flex-wrap: wrap;
 
- 
-
   .title {
     margin: 0;
     font-weight: 500;
@@ -159,7 +158,7 @@
 
     .title {
       font-size: 18px;
-       margin-bottom: 0;
+      margin-bottom: 0;
     }
   }
 }
@@ -170,7 +169,7 @@
       font-size: 16px;
       text-align: center;
       width: 100%;
-       margin-bottom: 0;
+      margin-bottom: 0;
     }
 
     .dx-texteditor {
@@ -179,39 +178,73 @@
   }
 }
 
-
-
 .treelist-toolbar-custom {
   .dx-texteditor {
-    height: 78px !important; 
+    height: 78px !important;
 
     .dx-texteditor-input {
-      height: 100% !important;   
+      height: 100% !important;
       line-height: 78px !important;
       padding: 0 12px !important;
     }
   }
 }
 
- .dx-editor-filled .dx-icon-search, .dx-swatch-dark .dx-editor-outlined .dx-icon-search {
-    position: absolute;
-    display: flex
-;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 100%;
-    top: 2px;
+.dx-editor-filled .dx-icon-search,
+.dx-swatch-dark .dx-editor-outlined .dx-icon-search {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 100%;
+  top: 2px;
 }
- .dx-editor-filled .dx-placeholder::before, .dx-swatch-dark .dx-editor-filled .dx-texteditor-input, .dx-swatch-dark .dx-searchbox.dx-editor-outlined .dx-placeholder::before, .dx-swatch-dark .dx-searchbox.dx-editor-outlined .dx-texteditor-input {
-    padding-inline-start: 36px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 14px;
+.dx-editor-filled .dx-placeholder::before,
+.dx-swatch-dark .dx-editor-filled .dx-texteditor-input,
+.dx-swatch-dark .dx-searchbox.dx-editor-outlined .dx-placeholder::before,
+.dx-swatch-dark .dx-searchbox.dx-editor-outlined .dx-texteditor-input {
+  padding-inline-start: 36px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
 }
 
-
-
-.dx-tabs.dx-state-focused .dx-tab.dx-state-focused{
+.dx-tabs.dx-state-focused .dx-tab.dx-state-focused {
   background-color: #923cf6;
+}
+.dx-treelist-cell-expandable {
+  font-weight: 500;
+  font-size: 12px;
+ 
+}
+
+.dx-row{
+font-weight: 500 !important;
+  font-size: 12px;
+}
+
+.dx-treelist-headers{
+
+font-weight: 600;
+
+font-size: 24px !important;
+
+
+}
+
+
+.dx-treelist-headers .dx-treelist-text-content,
+.dx-treelist-headers .dx-datagrid-text-content {
+  font-size: 16px !important;
+  font-weight: 600;
+  color: #000; 
+}
+
+
+.dx-swatch-dark .dx-treelist-headers .dx-treelist-text-content,
+.dx-swatch-dark .dx-treelist-headers .dx-datagrid-text-content {
+  font-size: 16px !important;
+  font-weight: 600;
+  color: #fff !important;
 }

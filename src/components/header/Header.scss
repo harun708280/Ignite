@@ -44,6 +44,19 @@ header {
   width: $side-panel-min-width;
   text-align: center;
   padding: 0;
+  .dx-swatch-dark & {
+    i {
+      color: #fff;
+    }
+  }
+}
+
+.dx-icon-sun{
+  .dx-swatch-dark & {
+    
+      color: #fff !important;
+    
+  }
 }
 
 .header-title .dx-item-content {
