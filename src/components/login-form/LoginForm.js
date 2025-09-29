@@ -89,7 +89,6 @@ export default function LoginForm() {
                 </Item>
               </Form>
 
-        
               <div className='remember-forgot-row'>
                 <div className='remember-me'>
                   <Form formData={formData.current}>
@@ -154,10 +153,10 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <div>
-          <video autoPlay loop muted playsInline className="login-image">
-        <source src="/Login-2.mp4" type="video/mp4" />
-      </video>
+        <div className='login-video'>
+          <video autoPlay loop muted playsInline className='login-image'>
+            <source src='/Login-2.mp4' type='video/mp4' />
+          </video>
         </div>
       </div>
     </div>
@@ -187,7 +186,7 @@ const passwordEditorOptions = {
         icon: "eyeopen",
         stylingMode: "text",
         onClick: function (e) {
-          if (!passwordRef.current) return; 
+          if (!passwordRef.current) return;
           const currentMode = passwordRef.current.option("mode");
           const isPassword = currentMode === "password";
 

@@ -216,35 +216,56 @@
 .dx-treelist-cell-expandable {
   font-weight: 500;
   font-size: 12px;
- 
 }
 
-.dx-row{
-font-weight: 500 !important;
+.dx-row {
+  font-weight: 500 !important;
   font-size: 12px;
 }
 
-.dx-treelist-headers{
+.dx-treelist-headers {
+  font-weight: 600;
 
-font-weight: 600;
-
-font-size: 24px !important;
-
-
+  font-size: 24px !important;
 }
-
 
 .dx-treelist-headers .dx-treelist-text-content,
 .dx-treelist-headers .dx-datagrid-text-content {
   font-size: 16px !important;
   font-weight: 600;
-  color: #000; 
+  color: #000;
 }
-
 
 .dx-swatch-dark .dx-treelist-headers .dx-treelist-text-content,
 .dx-swatch-dark .dx-treelist-headers .dx-datagrid-text-content {
   font-size: 16px !important;
   font-weight: 600;
   color: #fff !important;
+}
+
+/* Optional: soften header look */
+#concentration .dx-treelist-headers {
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
+
+/* Optional: round bottom */
+#concentration .dx-treelist-rowsview {
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+.dx-swatch-dark .dx-treelist .dx-treelist-sticky-column,
+.dx-swatch-dark .dx-treelist .dx-treelist-sticky-column-left,
+.dx-swatch-dark .dx-treelist .dx-treelist-sticky-column-right {
+  position: sticky;
+  z-index: 2;
+  background-color: #192129;
+}
+
+.dx-treelist-rowsview .dx-row-focused.dx-data-row .dx-command-edit .dx-link,
+.dx-treelist-rowsview
+  .dx-row-focused.dx-data-row
+  > td:not(.dx-focused):not(.dx-cell-modified):not(.dx-treelist-invalid) {
+  background-color: #d5e1ff;
+  color: #242424;
 }

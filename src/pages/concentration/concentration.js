@@ -1,4 +1,8 @@
-import TreeList, { Column, SearchPanel } from "devextreme-react/tree-list";
+import TreeList, {
+  Column,
+  SearchPanel,
+  Selection,
+} from "devextreme-react/tree-list";
 import { orientations, tabsText, stylingModes, iconPositions } from "./tabData";
 import Tabs from "devextreme-react/tabs";
 import "./Concentration.scss";
@@ -17,7 +21,7 @@ import {
   SaveIcon,
   TradeIcon,
 } from "../../icons";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 const renderRedIfNegative = (cellData) => {
   const value = cellData.value;
@@ -55,6 +59,10 @@ const data = [
     pnl: "$6.48",
     cashflow: 490.51,
     total: 328.85,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 2,
@@ -67,6 +75,10 @@ const data = [
     pnl: "$14.81",
     cashflow: 601.13,
     total: 446.61,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 3,
@@ -79,6 +91,10 @@ const data = [
     pnl: "$5.22",
     cashflow: 406.27,
     total: 351.02,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 4,
@@ -91,6 +107,10 @@ const data = [
     pnl: "$8.99",
     cashflow: 943.65,
     total: 948.55,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 5,
@@ -103,6 +123,10 @@ const data = [
     pnl: "$11.70",
     cashflow: 105.55,
     total: 589.99,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 6,
@@ -115,6 +139,10 @@ const data = [
     pnl: "$8.99",
     cashflow: 943.65,
     total: 948.55,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 7,
@@ -127,6 +155,10 @@ const data = [
     pnl: "$11.70",
     cashflow: 105.55,
     total: 589.99,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 8,
@@ -139,6 +171,10 @@ const data = [
     pnl: "$11.70",
     cashflow: 105.55,
     total: 589.99,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 9,
@@ -151,6 +187,10 @@ const data = [
     pnl: "$5.22",
     cashflow: 406.27,
     total: 351.02,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 10,
@@ -163,6 +203,10 @@ const data = [
     pnl: "$8.99",
     cashflow: 943.65,
     total: 948.55,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 11,
@@ -175,6 +219,10 @@ const data = [
     pnl: "$11.70",
     cashflow: 105.55,
     total: 589.99,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 12,
@@ -187,6 +235,10 @@ const data = [
     pnl: "$8.99",
     cashflow: 943.65,
     total: 948.55,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 13,
@@ -199,6 +251,10 @@ const data = [
     pnl: "$11.70",
     cashflow: 105.55,
     total: 589.99,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 14,
@@ -211,6 +267,10 @@ const data = [
     pnl: "$11.70",
     cashflow: 105.55,
     total: 589.99,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
   {
     id: 15,
@@ -223,6 +283,10 @@ const data = [
     pnl: "$11.70",
     cashflow: 105.55,
     total: 589.99,
+    tradeDate: "2025-09-28",
+    counterparty: "Shell",
+    trader: "John Doe",
+    remarks: "Initial trade",
   },
 ];
 
@@ -244,28 +308,65 @@ const Concentration = () => {
   const [iconPosition, setIconPosition] = useState(iconPositions[0]);
   const [orientation, setOrientation] = useState(orientations[0]);
 
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
+  const handleSelectionChanged = (e) => {
+    setSelectedRowKeys(e.selectedRowKeys);
+  };
+
+  const handleKeyDown = (e) => {
+    // Copy rows (Ctrl+C)
+    if ((e.ctrlKey || e.metaKey) && e.key === "c") {
+      const selectedRows = data.filter((row) =>
+        selectedRowKeys.includes(row.ID)
+      );
+      const textToCopy = selectedRows
+        .map((row) => `${row.ID}\t${row.Name}\t${row.Position}`)
+        .join("\n");
+      navigator.clipboard.writeText(textToCopy);
+      e.preventDefault();
+    }
+
+    // Paste rows (Ctrl+V)
+    if ((e.ctrlKey || e.metaKey) && e.key === "v") {
+      navigator.clipboard.readText().then((text) => {
+        const rows = text.split("\n").map((r) => r.split("\t"));
+        rows.forEach((rowData) => {
+          const newRow = {
+            ID: rowData[0],
+            Name: rowData[1],
+            Position: rowData[2],
+            ParentID: 0,
+          };
+          data.push(newRow); // Add to your data source
+        });
+      });
+      e.preventDefault();
+    }
+  };
+
   return (
-    <div className="concentration-section">
-      <div className="button">
-        <Button icon={PIcon} name="New" />
-        <Button icon={ReloadIcon} name="Reload" />
-        <Button icon={ClearIcon} name="Clear" />
-        <Button icon={DeleteIcon} name="Delete " />
-        <Button icon={CopyIcon} name="Copy" />
-        <Button icon={attachmentIcon} name="View Attachments" />
-        <Button icon={TradeIcon} name="Trade Linkage" />
-        <Button icon={MessageIcon} name="Send to Messenger" />
-        <Button icon={OthersIcon} name="Others" />
+    <div className='concentration-section'>
+      <div className='button'>
+        <Button icon={PIcon} name='New' />
+        <Button icon={ReloadIcon} name='Reload' />
+        <Button icon={ClearIcon} name='Clear' />
+        <Button icon={DeleteIcon} name='Delete ' />
+        <Button icon={CopyIcon} name='Copy' />
+        <Button icon={attachmentIcon} name='View Attachments' />
+        <Button icon={TradeIcon} name='Trade Linkage' />
+        <Button icon={MessageIcon} name='Send to Messenger' />
+        <Button icon={OthersIcon} name='Others' />
       </div>
 
-      <div className="button-2">
-        <Button icon={ResetIcon} name="Reset" />
-        <SpecialButton icon={SaveIcon} name="Save" iconFill="#2775FF" />
+      <div className='button-2'>
+        <Button icon={ResetIcon} name='Reset' />
+        <SpecialButton icon={SaveIcon} name='Save' iconFill='#2775FF' />
       </div>
 
-      <div className="tabs">
+      <div className='tabs'>
         <Tabs
-          id="withText"
+          id='withText'
           width={width}
           defaultSelectedIndex={0}
           rtlEnabled={rtlEnabled}
@@ -278,61 +379,78 @@ const Concentration = () => {
         />
       </div>
 
-      <div className="treelist-wrapper">
-        <div className="treelist-toolbar-custom">
-          <h6 className="title">Risk Concentration by Node</h6>
-          <SearchPanel dataField="item" visible={true} />
+      <div className='treelist-wrapper' onKeyDown={handleKeyDown} tabIndex={0}>
+        <div className='treelist-toolbar-custom'>
+          <h6 className='title'>Risk Concentration by Node</h6>
+          <SearchPanel dataField='item' visible={true} />
         </div>
 
         <TreeList
-          id="concentration"
+          id='concentration'
           dataSource={data}
-          keyExpr="id"
-          parentIdExpr="parentId"
+          keyExpr='id'
+          parentIdExpr='parentId'
           showBorders={true}
           columnAutoWidth={true}
+          allowColumnReordering={true}
           defaultExpandedRowKeys={[1, 2, 3, 6, 8, 9]}
           showRowLines={true}
+          rowAlternationEnabled={true} // ✅ zebra striping
+          hoverStateEnabled={true} // ✅ highlight on hover
+          focusedRowEnabled={true}
+          onSelectionChanged={handleSelectionChanged}
         >
           <SearchPanel visible={true} width={260} height={78} />
-
-          <Column dataField="item" caption="Item Id" width={240} />
-
           <Column
-            dataField="quantityUOM"
-            caption="Quantity (UOM)"
+            dataField='item'
+            caption='Item Id'
+            width={240}
+            fixed={true}
+            fixedPosition='left'
+          />
+          <Column
+            dataField='quantityUOM'
+            caption='Quantity (UOM)'
             cellRender={renderRedWith3Digits}
           />
           <Column
-            dataField="quantityMT"
-            caption="Quantity (MT)"
+            dataField='quantityMT'
+            caption='Quantity (MT)'
             cellRender={renderRedWith3Digits}
           />
-
           <Column
-            dataField="quantityBBL"
-            caption="Quantity (BBL)"
+            dataField='quantityBBL'
+            caption='Quantity (BBL)'
             cellRender={renderRedIfNegative}
           />
           <Column
-            dataField="price"
-            caption="Underlying Price"
-            alignment="right"
+            dataField='price'
+            caption='Underlying Price'
+            alignment='right'
             cellRender={renderRedIfNegative}
           />
-          <Column dataField="pnl" caption="Profit & Loss" alignment="right" />
+          <Column dataField='pnl' caption='Profit & Loss' alignment='right' />
           <Column
-            dataField="cashflow"
-            caption="Cashflow"
-            alignment="right"
+            dataField='cashflow'
+            caption='Cashflow'
+            alignment='right'
             cellRender={renderRedIfNegative}
           />
           <Column
-            dataField="total"
-            caption="Total"
-            alignment="right"
+            dataField='total'
+            caption='Total'
+            alignment='right'
             cellRender={renderRedIfNegative}
           />
+          <Column
+            dataField='tradeDate'
+            caption='Trade Date'
+            dataType='date'
+            width={140}
+          />
+          <Column dataField='counterparty' caption='Counterparty' width={180} />
+          <Column dataField='trader' caption='Trader' width={140} />
+          <Column dataField='remarks' caption='Remarks' width={240} />
         </TreeList>
       </div>
     </div>
