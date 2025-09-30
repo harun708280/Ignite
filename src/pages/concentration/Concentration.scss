@@ -254,6 +254,20 @@
   border-radius: 0 0 12px 12px;
   overflow: hidden;
 }
+#concentration {
+  .dx-icon {
+    .dx-swatch-dark & {
+      color: #fff !important;
+    }
+  }
+  .dx-filterbuilder-group {
+    .dx-filterbuilder-group-operation.dx-filterbuilder-text {
+      .dx-swatch-dark & {
+        background-color: #2775ff !important;
+      }
+    }
+  }
+}
 .dx-swatch-dark .dx-treelist .dx-treelist-sticky-column,
 .dx-swatch-dark .dx-treelist .dx-treelist-sticky-column-left,
 .dx-swatch-dark .dx-treelist .dx-treelist-sticky-column-right {
@@ -268,4 +282,39 @@
   > td:not(.dx-focused):not(.dx-cell-modified):not(.dx-treelist-invalid) {
   background-color: #d5e1ff;
   color: #242424;
+}
+.filter-builder-wrapper {
+  h6 {
+    margin: 0 0 10px 0;
+  }
+  .dx-filterbuilder {
+    .dx-swatch-dark & {
+      background: #192129;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 15px;
+      .dx-filterbuilder-group,
+      .dx-filterbuilder-item {
+        background: #192129;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 10px;
+        .dx-filterbuilder-text {
+          color: #fff !important;
+        }
+        .dx-filterbuilder-field-selector {
+          color: #fff !important;
+        }
+        .dx-filterbuilder-operator-selector {
+          color: #fff !important;
+        }
+        .dx-filterbuilder-value-textbox .dx-texteditor-input {
+          background: #232129;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: #fff !important;
+        }
+      }
+    }
+  }
 }
