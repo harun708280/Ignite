@@ -1,9 +1,7 @@
-import TreeList, {
-  Column,
-  SearchPanel,
-  Editing,
-} from "devextreme-react/tree-list";
+import TreeList, { Column, SearchPanel } from "devextreme-react/tree-list";
 import FilterBuilder from "devextreme-react/filter-builder";
+import { ReactComponent as ArrowD } from "../../assets/images/icons/arreowD.svg";
+import { ReactComponent as ArrowU } from "../../assets/images/icons/arrowU.svg";
 import { orientations, tabsText, stylingModes, iconPositions } from "./tabData";
 import Tabs from "devextreme-react/tabs";
 import "./Concentration.scss";
@@ -22,7 +20,8 @@ import {
   SaveIcon,
   TradeIcon,
 } from "../../icons";
-import { useCallback, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react"; // toggle icons
 import { data } from "./data";
 
 const renderRedIfNegative = (cellData) => {
@@ -49,7 +48,7 @@ const renderRedWith3Digits = (cellData) => {
   return <span>{value}</span>;
 };
 
-// ✅ filter fields for FilterBuilder
+// ✅ Extended filter fields
 const fields = [
   { dataField: "item", dataType: "string" },
   { dataField: "quantityUOM", dataType: "number" },
@@ -63,6 +62,13 @@ const fields = [
   { dataField: "counterparty", dataType: "string" },
   { dataField: "trader", dataType: "string" },
   { dataField: "remarks", dataType: "string" },
+
+  // Business-specific filters
+  { dataField: "tradeDesk", dataType: "string" },
+  { dataField: "book", dataType: "string" },
+  { dataField: "strategy", dataType: "string" },
+  { dataField: "instrumentType", dataType: "string" },
+  { dataField: "region", dataType: "string" },
 ];
 
 const Concentration = () => {
@@ -75,7 +81,8 @@ const Concentration = () => {
   const [orientation, setOrientation] = useState(orientations[0]);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [filter, setFilter] = useState(null); // ✅ state for filter
+  const [filter, setFilter] = useState(null); // ✅ filter state
+  const [showFilter, setShowFilter] = useState(true); // ✅ toggle filter panel
 
   const handleSelectionChanged = (e) => {
     setSelectedRowKeys(e.selectedRowKeys);
@@ -109,6 +116,41 @@ const Concentration = () => {
       e.preventDefault();
     }
   };
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const [height, setHeight] = useState("auto");
+  const containerRef = useRef(null);
+  // useEffect(() => {
+  //   if (containerRef.current) {
+  //     setHeight(isCollapsed ? "0px" : `${containerRef.current.scrollHeight}px`);
+  //   }
+  // }, [isCollapsed, filter]);
+  // useEffect(() => {
+  //   if (!containerRef.current) return;
+
+  //   // target the filter builder root element
+  //   const contentEl =
+  //     containerRef.current.querySelector(".dx-filterbuilder") ||
+  //     containerRef.current;
+
+  //   // Observe size changes
+  //   const resizeObserver = new ResizeObserver(() => {
+  //     if (!isCollapsed) {
+  //       // animate to new height when expanded
+  //       setHeight(
+  //         !isCollapsed ? "0px" : `${containerRef.current.scrollHeight}px`
+  //       );
+  //       // after animation, release to "auto"
+  //       setTimeout(() => setHeight("auto"), 300);
+  //     }
+  //   });
+
+  //   resizeObserver.observe(contentEl);
+
+  //   return () => resizeObserver.disconnect();
+  // }, [isCollapsed]);
+
+  console.log(height, filter, "height");
 
   return (
     <div className='concentration-section'>
@@ -145,15 +187,53 @@ const Concentration = () => {
       </div>
 
       <div className='treelist-wrapper' onKeyDown={handleKeyDown} tabIndex={0}>
-        {/* ✅ FILTER BUILDER SECTION */}
-        <div className='filter-builder-wrapper'>
-          <h6>Advanced Filter</h6>
-          <FilterBuilder
-            fields={fields}
-            value={filter}
-            onValueChanged={(e) => setFilter(e.value)}
-          />
+        <div
+          className='identity-header'
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          style={{
+            cursor: "pointer",
+            userSelect: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <span>Advanced Filters </span>
+          <span>
+            {isCollapsed ? (
+              <ArrowD className='arrow-icon' />
+            ) : (
+              <ArrowU className='arrow-icon' />
+            )}
+          </span>
         </div>
+        {/* ✅ COLLAPSIBLE FILTER BUILDER */}
+        <div className='filter-builder-container'>
+          {/* <button
+            className='toggle-filter-btn'
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            {showFilter ? "Hide Filters" : "Show Filters"}{" "}
+            {showFilter ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </button> */}
+
+          <div
+            className='filter-builder-wrapper'
+            ref={containerRef}
+            style={{
+              maxHeight: isCollapsed ? "0px" : "1500px",
+              overflow: isCollapsed ? "hidden" : "visible",
+              transition: "max-height 0.4s ease",
+            }}
+          >
+            <FilterBuilder
+              fields={fields}
+              value={filter}
+              onValueChanged={(e) => setFilter(e.value)}
+            />
+          </div>
+        </div>
+
         <div className='treelist-toolbar-custom'>
           <h6 className='title'>Risk Concentration by Node</h6>
           <SearchPanel dataField='item' visible={true} />
@@ -227,12 +307,17 @@ const Concentration = () => {
           <Column dataField='counterparty' caption='Counterparty' width={180} />
           <Column dataField='trader' caption='Trader' width={140} />
           <Column dataField='remarks' caption='Remarks' width={240} />
-          {/* <Editing
-            mode='popup'
-            allowUpdating={true}
-            allowDeleting={true}
-            allowAdding={true}
-          /> */}
+
+          {/* New filterable business fields */}
+          <Column dataField='tradeDesk' caption='Trade Desk' width={160} />
+          <Column dataField='book' caption='Book' width={140} />
+          <Column dataField='strategy' caption='Strategy' width={160} />
+          <Column
+            dataField='instrumentType'
+            caption='Instrument Type'
+            width={160}
+          />
+          <Column dataField='region' caption='Region' width={120} />
         </TreeList>
       </div>
     </div>

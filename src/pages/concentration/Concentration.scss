@@ -83,6 +83,11 @@
   font-size: 16px;
 }
 
+.dx-swatch-dark .identity-header {
+  background: #2775ff;
+  color: #fff;
+}
+
 .dx-swatch-dark .dx-datagrid > .dx-datagrid-rowsview,
 .dx-swatch-dark .dx-datagrid > .dx-datagrid-total-footer {
   background-color: transparent !important;
@@ -318,3 +323,31 @@
     }
   }
 }
+// .filter-builder-container {
+//   margin-bottom: 1rem;
+
+//   .toggle-filter-btn {
+//     background: #2775ff;
+//     color: #fff;
+//     border: none;
+//     padding: 6px 12px;
+//     font-size: 14px;
+//     cursor: pointer;
+//     display: flex;
+//     align-items: center;
+//     gap: 4px;
+//     border-radius: 6px;
+
+//     &:hover {
+//       background: #1c51ac;
+//     }
+//   }
+
+//   .filter-builder-wrapper {
+//     margin-top: 0.5rem;
+//     padding: 1rem;
+//     border: 1px solid #797878;
+//     border-radius: 8px;
+//     background: #192129;
+//   }
+// }

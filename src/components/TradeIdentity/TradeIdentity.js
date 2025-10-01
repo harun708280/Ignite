@@ -143,6 +143,8 @@ const TradeIdentity = () => {
     [setRtlEnabled]
   );
 
+  console.log(height, "height identity");
+
   return (
     <div className='trade-identity-container trade-identity'>
       <div className='tabs'>

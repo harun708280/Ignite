@@ -2,7 +2,7 @@ import React from "react";
 import "./Button.scss";
 
 const Button = ({ icon: Icon, name, bgColor }) => {
-  console.log(Icon);
+  // console.log(Icon);
 
   return (
     <button
