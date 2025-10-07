@@ -23,6 +23,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react"; // toggle icons
 import { data } from "./data";
+import { CheckBox, SelectBox, Switch } from "devextreme-react";
 
 const renderRedIfNegative = (cellData) => {
   const value = cellData.value;
@@ -83,6 +84,13 @@ const Concentration = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [filter, setFilter] = useState(null); // ✅ filter state
   const [showFilter, setShowFilter] = useState(true); // ✅ toggle filter panel
+  const [switchValue, setSwitchValue] = useState(false);
+
+  const [strategy, setStrategy] = useState(null);
+  const [tradeType, setTradeType] = useState("Futures");
+  const strategyValue = ["Strategy 1", "Strategy 2", "Strategy 3"];
+
+  const tradeData = ["Trade 1", "Trade 2", "Trade 3"];
 
   const handleSelectionChanged = (e) => {
     setSelectedRowKeys(e.selectedRowKeys);
@@ -198,7 +206,7 @@ const Concentration = () => {
             justifyContent: "space-between",
           }}
         >
-          <span>Advanced Filters </span>
+          <span>{isCollapsed ? "Show Filters" : "Hide Filters"} </span>
           <span>
             {isCollapsed ? (
               <ArrowD className='arrow-icon' />
@@ -209,14 +217,6 @@ const Concentration = () => {
         </div>
         {/* ✅ COLLAPSIBLE FILTER BUILDER */}
         <div className='filter-builder-container'>
-          {/* <button
-            className='toggle-filter-btn'
-            onClick={() => setShowFilter(!showFilter)}
-          >
-            {showFilter ? "Hide Filters" : "Show Filters"}{" "}
-            {showFilter ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          </button> */}
-
           <div
             className='filter-builder-wrapper'
             ref={containerRef}
@@ -226,6 +226,60 @@ const Concentration = () => {
               transition: "max-height 0.4s ease",
             }}
           >
+            <div>
+              <h6>Basic Filters</h6>
+              <div className='form-row'>
+                <div className='form-group sell-select-wrapper'>
+                  <label htmlFor='tradeType' className='input-label'>
+                    Trade Desk/Book
+                  </label>
+                  <SelectBox
+                    id='tradeType'
+                    dataSource={tradeData}
+                    value={tradeType}
+                    placeholder='Select'
+                    onValueChanged={(e) => setTradeType(e.value)}
+                    className='custom-input'
+                  />
+                </div>
+
+                <div className='form-group sell-select-wrapper'>
+                  <label htmlFor='trader' className='input-label'>
+                    Strategy
+                  </label>
+                  <SelectBox
+                    id='strategy'
+                    dataSource={strategyValue}
+                    value={strategy}
+                    placeholder='Select'
+                    onValueChanged={(e) => setStrategy(e.value)}
+                    className='custom-input'
+                  />
+                </div>
+                <div className='form-group'>
+                  <div className='check'>
+                    <CheckBox defaultValue={false} />
+                    <label className='input-label'>
+                      Include Archived Records
+                    </label>
+                  </div>
+                </div>
+                <div className='form-group'>
+                  <div className='check'>
+                    <Switch
+                      defaultValue={switchValue}
+                      onValueChanged={(e) => setSwitchValue(e.value)} // Update state on switch toggle
+                      style={{ backgroundColor: switchValue ? "#fff" : "" }}
+                    />
+                    <label className='input-label'>
+                      {switchValue ? "Pnl Shift On" : "Pnl Shift Off"}{" "}
+                      {/* Conditionally render the label */}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h6>Advanced Filters</h6>
             <FilterBuilder
               fields={fields}
               value={filter}

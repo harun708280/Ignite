@@ -322,6 +322,17 @@
       }
     }
   }
+  h6 {
+    font-size: 18px !important;
+  }
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
 }
 // .filter-builder-container {
 //   margin-bottom: 1rem;
