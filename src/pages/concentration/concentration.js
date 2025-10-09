@@ -7,6 +7,7 @@ import Tabs from "devextreme-react/tabs";
 import "./Concentration.scss";
 import Button from "../../components/ui/Button";
 import SpecialButton from "../../components/ui/SpecialButton";
+
 import {
   attachmentIcon,
   ClearIcon,
@@ -24,6 +25,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react"; // toggle icons
 import { data } from "./data";
 import { CheckBox, SelectBox, Switch } from "devextreme-react";
+import ConcentrationGrid from "./ConcentrationGrid";
 
 const renderRedIfNegative = (cellData) => {
   const value = cellData.value;
@@ -72,6 +74,40 @@ const fields = [
   { dataField: "region", dataType: "string" },
 ];
 
+// ---------- Add Group Summaries ----------
+const addGroupSummaries = (data) => {
+  const map = new Map();
+  data.forEach((item) => {
+    if (!map.has(item.parentId)) map.set(item.parentId, []);
+    map.get(item.parentId).push(item);
+  });
+
+  const summaryRows = [];
+
+  map.forEach((children, parentId) => {
+    const summaryRow = {
+      id: `summary-${parentId}`,
+      parentId: parentId,
+      item: "Summary",
+      quantityUOM: children.reduce((sum, x) => sum + x.quantityUOM, 0),
+      quantityMT: children.reduce((sum, x) => sum + x.quantityMT, 0),
+      quantityBBL: children.reduce((sum, x) => sum + x.quantityBBL, 0),
+      price: null,
+      pnl: null,
+      cashflow: children.reduce((sum, x) => sum + x.cashflow, 0),
+      total: children.reduce((sum, x) => sum + x.total, 0),
+      tradeDate: null,
+      counterparty: "",
+      trader: "",
+      remarks: "",
+      isSummary: true,
+    };
+    summaryRows.push(summaryRow);
+  });
+
+  return [...data, ...summaryRows];
+};
+
 const Concentration = () => {
   const [width, setWidth] = useState("auto");
   const [rtlEnabled, setRtlEnabled] = useState(false);
@@ -91,6 +127,15 @@ const Concentration = () => {
   const strategyValue = ["Strategy 1", "Strategy 2", "Strategy 3"];
 
   const tradeData = ["Trade 1", "Trade 2", "Trade 3"];
+
+  const [tempFilter, setTempFilter] = useState(null); // Temp filter for builder
+  const [appliedFilter, setAppliedFilter] = useState(null); // Final filter applied to TreeList
+
+  // ADD THIS RESET FUNCTION
+  const handleClearFilters = () => {
+    setTempFilter(null);
+    setAppliedFilter(null);
+  };
 
   const handleSelectionChanged = (e) => {
     setSelectedRowKeys(e.selectedRowKeys);
@@ -128,6 +173,17 @@ const Concentration = () => {
 
   const [height, setHeight] = useState("auto");
   const containerRef = useRef(null);
+
+  const onRowPrepared = (e) => {
+    // ✅ Make sure rowElement and data exist
+    if (!e || !e.data || !e.rowElement) return;
+
+    if (e.data.isSummary) {
+      e.rowElement.classList.add("summary-row");
+    }
+  };
+
+  const treeData = addGroupSummaries(data);
   // useEffect(() => {
   //   if (containerRef.current) {
   //     setHeight(isCollapsed ? "0px" : `${containerRef.current.scrollHeight}px`);
@@ -282,8 +338,23 @@ const Concentration = () => {
             <h6>Advanced Filters</h6>
             <FilterBuilder
               fields={fields}
-              value={filter}
-              onValueChanged={(e) => setFilter(e.value)}
+              value={tempFilter}
+              onValueChanged={(e) => setTempFilter(e.value)}
+            />
+          </div>
+          <div
+            style={{ display: "flex", gap: "10px", marginTop: "10px" }}
+            className='button-2'
+          >
+            <Button
+              name='Apply Filters'
+              icon={SaveIcon}
+              onClick={() => setAppliedFilter(tempFilter)}
+            />
+            <Button
+              name='Clear Filters'
+              icon={ClearIcon}
+              onClick={handleClearFilters}
             />
           </div>
         </div>
@@ -295,7 +366,7 @@ const Concentration = () => {
 
         <TreeList
           id='concentration'
-          dataSource={data}
+          dataSource={treeData}
           keyExpr='id'
           parentIdExpr='parentId'
           showBorders={true}
@@ -307,7 +378,8 @@ const Concentration = () => {
           hoverStateEnabled={true}
           focusedRowEnabled={true}
           onSelectionChanged={handleSelectionChanged}
-          filterValue={filter} // ✅ apply filter here
+          onRowPrepared={onRowPrepared}
+          filterValue={appliedFilter}
           allowColumnResizing={true}
         >
           <SearchPanel visible={true} width={260} height={78} />
@@ -315,7 +387,7 @@ const Concentration = () => {
             dataField='item'
             caption='Item Id'
             width={240}
-            fixed={true}
+            fixed
             fixedPosition='left'
           />
           <Column
@@ -361,8 +433,6 @@ const Concentration = () => {
           <Column dataField='counterparty' caption='Counterparty' width={180} />
           <Column dataField='trader' caption='Trader' width={140} />
           <Column dataField='remarks' caption='Remarks' width={240} />
-
-          {/* New filterable business fields */}
           <Column dataField='tradeDesk' caption='Trade Desk' width={160} />
           <Column dataField='book' caption='Book' width={140} />
           <Column dataField='strategy' caption='Strategy' width={160} />
