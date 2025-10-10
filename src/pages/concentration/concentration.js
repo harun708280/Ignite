@@ -341,21 +341,21 @@ const Concentration = () => {
               value={tempFilter}
               onValueChanged={(e) => setTempFilter(e.value)}
             />
-          </div>
-          <div
-            style={{ display: "flex", gap: "10px", marginTop: "10px" }}
-            className='button-2'
-          >
-            <Button
-              name='Apply Filters'
-              icon={SaveIcon}
-              onClick={() => setAppliedFilter(tempFilter)}
-            />
-            <Button
-              name='Clear Filters'
-              icon={ClearIcon}
-              onClick={handleClearFilters}
-            />
+            <div
+              style={{ display: "flex", gap: "10px", marginTop: "10px" }}
+              className='button-2'
+            >
+              <Button
+                name='Apply Filters'
+                icon={SaveIcon}
+                onClick={() => setAppliedFilter(tempFilter)}
+              />
+              <Button
+                name='Clear Filters'
+                icon={ClearIcon}
+                onClick={handleClearFilters}
+              />
+            </div>
           </div>
         </div>
 

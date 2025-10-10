@@ -345,6 +345,15 @@
 }
 .filter-builder-container {
   .custom-button {
+    background: #1559d1;
+    svg {
+      path {
+        stroke: #fff;
+      }
+    }
+    .button-text {
+      color: #fff !important;
+    }
     .dx-swatch-dark & {
       background: #505254;
     }

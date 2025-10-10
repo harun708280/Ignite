@@ -64,7 +64,7 @@ export default function LoginForm() {
             <p className='sub-text'>
               Welcome back! Enter your details to continue.
             </p>
-            <form className={"login-form"} onSubmit={onSubmit}>
+            {/* <form className={"login-form"} onSubmit={onSubmit}>
               <Form formData={formData.current} disabled={loading}>
                 <Item
                   dataField={"email"}
@@ -129,10 +129,10 @@ export default function LoginForm() {
                   </ButtonItem>
                 </Form>
               </div>
-            </form>
-            <div className='or-divider'>
+            </form> */}
+            {/* <div className='or-divider'>
               <span>Or sign in with</span>
-            </div>
+            </div> */}
             <div className='microsoft-button'>
               <Button
                 icon='/Microsoft-Icon.png'
@@ -145,8 +145,8 @@ export default function LoginForm() {
                 Don’t have account?{" "}
                 <Button
                   className='btn-create-account'
-                  text='Sign up'
-                  onClick={onCreateAccountClick}
+                  text='Contact Us'
+                  // onClick={onCreateAccountClick}
                   stylingMode={getButtonStylingMode(themeContext?.theme)}
                 />
               </span>
