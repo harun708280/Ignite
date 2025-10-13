@@ -4,9 +4,33 @@
 .button {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
+  gap: 8px; // বাটনের মাঝে একটু স্পেস
+
+  // Default (Desktop / Large Screen)
+  button {
+    flex: 0 0 auto;
+  }
+
+  // Tablet
+  @media (max-width: 1024px) {
+    justify-content: flex-start;
+    button {
+      flex: 1 1 calc(33.33% - 8px); // প্রতি লাইনে ৩টা বাটন
+    }
+  }
+
+  // Mobile
+  @media (max-width: 768px) {
+    // flex-direction: column; // এক লাইনে একটাই বাটন (Full width)
+    button {
+      // width: 100%;
+      // justify-content: center;
+      flex: 1 1 calc(50% - 8px); // দুইটা বাটন প্রতি লাইনে
+      justify-content: center;
+    }
+  }
 }
+
 .button-2 {
   display: flex;
   flex-wrap: wrap;
@@ -17,18 +41,12 @@
   margin-bottom: 16px;
 }
 @media (max-width: 768px) {
-  .button,
   .button-2 {
     align-items: flex-start;
   }
 
   .button-2 {
     align-items: stretch;
-  }
-
-  .button > *,
-  .button-2 > * {
-    // flex: 1 1 100%;
   }
 }
 

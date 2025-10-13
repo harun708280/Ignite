@@ -88,7 +88,7 @@ const addGroupSummaries = (data) => {
     const summaryRow = {
       id: `summary-${parentId}`,
       parentId: parentId,
-      item: "Summary",
+      item: "",
       quantityUOM: children.reduce((sum, x) => sum + x.quantityUOM, 0),
       quantityMT: children.reduce((sum, x) => sum + x.quantityMT, 0),
       quantityBBL: children.reduce((sum, x) => sum + x.quantityBBL, 0),
@@ -381,8 +381,16 @@ const Concentration = () => {
           onRowPrepared={onRowPrepared}
           filterValue={appliedFilter}
           allowColumnResizing={true}
+          expandIconColumn='item'
         >
           <SearchPanel visible={true} width={260} height={78} />
+          <Column
+            dataField='status'
+            caption='Status'
+            width={100}
+            fixed
+            fixedPosition='left'
+          />
           <Column
             dataField='item'
             caption='Item Id'

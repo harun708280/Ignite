@@ -119,6 +119,17 @@
   border-radius: 10px;
   padding: 20px;
   box-sizing: border-box;
+  .identity-header {
+    span {
+      .dx-swatch-dark & {
+        svg {
+          path {
+            stroke: #fff !important;
+          }
+        }
+      }
+    }
+  }
 }
 
 .treelist-header-row {
@@ -400,12 +411,12 @@
     background-color: #33343a !important;
     font-weight: bold !important;
     td {
-      background-color: #bebebf !important;
+      background-color: #3a3a3a !important;
     }
   }
   background-color: #ebebeb !important;
   font-weight: bold !important;
   td {
-    background-color: #ebebeb !important;
+    background-color: #f6f5f5 !important;
   }
 }

@@ -2,6 +2,7 @@ export const data = [
   {
     id: 1,
     parentId: 0,
+    status: "",
     item: "Singapore Gasoline",
     quantityUOM: 150.0,
     quantityMT: 300.0,
@@ -18,6 +19,7 @@ export const data = [
   {
     id: 2,
     parentId: 1,
+    status: "",
     item: "Trades",
     quantityUOM: 300.0,
     quantityMT: 120.0,
@@ -34,6 +36,7 @@ export const data = [
   {
     id: 3,
     parentId: 2,
+    status: "",
     item: "Physical",
     quantityUOM: 180.0,
     quantityMT: 150.0,
@@ -50,6 +53,7 @@ export const data = [
   {
     id: 4,
     parentId: 3,
+    status: "",
     item: "Buy",
     quantityUOM: 100.0,
     quantityMT: 100.0,
@@ -66,6 +70,7 @@ export const data = [
   {
     id: 5,
     parentId: 4,
+    status: "",
     item: "64603",
     quantityUOM: 350.0,
     quantityMT: 450.0,
@@ -82,6 +87,7 @@ export const data = [
   {
     id: 6,
     parentId: 3,
+    status: "",
     item: "Sell",
     quantityUOM: 100.0,
     quantityMT: 100.0,
@@ -98,6 +104,7 @@ export const data = [
   {
     id: 7,
     parentId: 6,
+    status: "",
     item: "86038",
     quantityUOM: -350.0,
     quantityMT: -350.0,
@@ -114,6 +121,7 @@ export const data = [
   {
     id: 8,
     parentId: 6,
+    status: "",
     item: "106080",
     quantityUOM: 350.0,
     quantityMT: 450.0,
@@ -130,6 +138,7 @@ export const data = [
   {
     id: 9,
     parentId: 2,
+    status: "",
     item: "Outcome Adjustment",
     quantityUOM: 180.0,
     quantityMT: 150.0,
@@ -146,6 +155,7 @@ export const data = [
   {
     id: 10,
     parentId: 9,
+    status: "",
     item: "Loss",
     quantityUOM: 100.0,
     quantityMT: 100.0,
@@ -162,6 +172,7 @@ export const data = [
   {
     id: 11,
     parentId: 10,
+    status: "",
     item: "87276",
     quantityUOM: 350.0,
     quantityMT: 450.0,
@@ -178,6 +189,7 @@ export const data = [
   {
     id: 12,
     parentId: 1,
+    status: "",
     item: "Futures",
     quantityUOM: 100.0,
     quantityMT: 100.0,
@@ -194,6 +206,7 @@ export const data = [
   {
     id: 13,
     parentId: 12,
+    status: "",
     item: "NYMEX",
     quantityUOM: -350.0,
     quantityMT: -350.0,
@@ -211,6 +224,7 @@ export const data = [
     id: 14,
     parentId: 13,
     item: "Sell",
+    status: "",
     quantityUOM: -350.0,
     quantityMT: -350.0,
     quantityBBL: -350.0,
@@ -226,6 +240,7 @@ export const data = [
   {
     id: 15,
     parentId: 14,
+    status: "",
     item: "724436",
     quantityUOM: 350.0,
     quantityMT: 450.0,
