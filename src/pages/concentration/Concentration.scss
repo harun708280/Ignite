@@ -420,3 +420,26 @@
     background-color: #f6f5f5 !important;
   }
 }
+
+.yellow-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  background-color: yellow;
+}
+/* ✅ For leaf nodes (e.g., 86038, 87276, etc.) */
+/* For leaf rows — add yellow marker */
+.leaf-row > td {
+  position: relative;
+}
+.leaf-row .dx-treelist-first-header::after {
+  position: absolute;
+  content: "";
+  left: 100px;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  background-color: #ffb800;
+}

@@ -173,13 +173,21 @@ const Concentration = () => {
 
   const [height, setHeight] = useState("auto");
   const containerRef = useRef(null);
-
   const onRowPrepared = (e) => {
-    // ✅ Make sure rowElement and data exist
     if (!e || !e.data || !e.rowElement) return;
 
+    // summary row
     if (e.data.isSummary) {
       e.rowElement.classList.add("summary-row");
+      return;
+    }
+
+    const currentId = e.data.id;
+    const hasChild = treeData.some((d) => d.parentId === currentId);
+
+    // ✅ mark leaf rows only
+    if (e.rowType === "data" && !hasChild) {
+      e.rowElement.classList.add("leaf-row");
     }
   };
 
@@ -384,13 +392,7 @@ const Concentration = () => {
           expandIconColumn='item'
         >
           <SearchPanel visible={true} width={260} height={78} />
-          <Column
-            dataField='status'
-            caption='Status'
-            width={100}
-            fixed
-            fixedPosition='left'
-          />
+
           <Column
             dataField='item'
             caption='Item Id'
